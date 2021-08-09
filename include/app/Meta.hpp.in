@@ -1,0 +1,3 @@
+#pragma once
+
+#define NESZ_VERSION "@NESZ_VERSION@"
