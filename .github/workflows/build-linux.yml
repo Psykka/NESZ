@@ -16,7 +16,6 @@ jobs:
         with:
           submodules: true
       - name: Install dependencies
-        working-directory: ${{runner.workspace}}
         run: |
           sudo apt update
           sudo apt install cmake ninja-build qt5-default libsdl2-dev
@@ -27,7 +26,7 @@ jobs:
 
       - name: Configure cmake
         working-directory: ${{runner.workspace}}/build
-        run: cmake ${{runner.workspace}} -G Ninja -D BUILD_TESTS=OFF
+        run: cmake $GITHUB_WORKSPACE -G Ninja -D BUILD_TESTS=OFF
       
       - name: Ninja Build
         working-directory: ${{runner.workspace}}/build

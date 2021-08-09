@@ -24,7 +24,7 @@ jobs:
 
       - name: Configure cmake
         working-directory: ${{runner.workspace}}/build
-        run: cmake ${{runner.workspace}} -G Ninja
+        run: cmake $GITHUB_WORKSPACE -G Ninja
       
       - name: Ninja Build
         working-directory: ${{runner.workspace}}/build
