@@ -27,7 +27,7 @@ jobs:
           
       - name: Create build dir
         working-directory: ${{runner.workspace}}
-        run: mkdir ${{runner.workspace}}/build
+        run: mkdir build
 
       - name: Configure cmake
         working-directory: ${{runner.workspace}}/build
