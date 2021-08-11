@@ -30,8 +30,7 @@ jobs:
       
       - name: Ninja Build
         working-directory: ${{runner.workspace}}/build
-        run: |
-          ninja
+        run: ninja
       
       - uses: actions/upload-artifact@v1
         with:
