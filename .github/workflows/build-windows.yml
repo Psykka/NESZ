@@ -1,0 +1,45 @@
+name: Windows Build
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+    run:
+      shell: msys2 {0}
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+      - uses: msys2/setup-msys2@v2
+      - name: Install dependencies
+        with:
+            msystem: MINGW64
+            update: true
+        run: |
+          pacman -S --noconfirm make mingw-w64-x86_64-{cmake,SDL2,qt5-static}
+          
+      - name: Create build dir
+        working-directory: ${{runner.workspace}}
+        run: mkdir ${{runner.workspace}}/build
+
+      - name: Configure cmake
+        working-directory: ${{runner.workspace}}/build
+        run: cmake $GITHUB_WORKSPACE -G "MSYS Makefiles" -D BUILD_TESTS=OFF
+      
+      - name: Make Build
+        working-directory: ${{runner.workspace}}/build
+        run: |
+          make -j$(nproc --all)
+      
+      - uses: actions/upload-artifact@v1
+        with:
+          name: NESZ-windows-x86_64
+          path: ${{runner.workspace}}/build/bin
