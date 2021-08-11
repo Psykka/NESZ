@@ -36,6 +36,10 @@ jobs:
       - name: Make Build
         working-directory: ${{runner.workspace}}/build
         run: make -j$(nproc --all)
+
+      - name: Copy libraries
+        working-directory: ${{runner.workspace}}/build/bin
+        run: for lib in $(ldd NESZ.exe | grep mingw | sed "s/.*=> //" | sed "s/(.*)//"); do cp "${lib}" ./; done
       
       - uses: actions/upload-artifact@v1
         with:
