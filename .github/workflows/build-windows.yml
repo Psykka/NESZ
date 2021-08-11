@@ -23,7 +23,7 @@ jobs:
             msystem: MINGW64
             update: true
       - name: Install dependencies
-        run: pacman -S --noconfirm mingw-w64-x86_64-{cmake,SDL2,qt5-static,toolchain}
+        run: pacman -S --noconfirm mingw-w64-x86_64-{make,cmake,SDL2,qt5-static,toolchain}
           
       - name: Create build dir
         working-directory: ${{runner.workspace}}
