@@ -121,29 +121,21 @@ void CPU::run_instruction(Byte opcode)
     switch (opcode)
     {
     case 0xa9:
-        LDA(IMM);
-        break;
+        return LDA(IMM);
     case 0xa5:
-        LDA(ZP0);
-        break;
+        return LDA(ZP0);
     case 0xb5:
-        LDA(ZPX);
-        break;
+        return LDA(ZPX);
     case 0xad:
-        LDA(ABS);
-        break;
+        return LDA(ABS);
     case 0xbd:
-        LDA(ABX);
-        break;
+        return LDA(ABX);
     case 0xb9:
-        LDA(ABY);
-        break;
+        return LDA(ABY);
     case 0xa1:
-        LDA(IZX);
-        break;
+        return LDA(IZX);
     case 0xb1:
-        LDA(IZY);
-        break;
+        return LDA(IZY);
     default:
         pc++;
     }
