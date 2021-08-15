@@ -31,7 +31,7 @@ jobs:
 
       - name: Configure cmake
         working-directory: ${{runner.workspace}}/build
-        run: cmake $GITHUB_WORKSPACE -G "MSYS Makefiles" -D BUILD_TESTS=OFF
+        run: cmake $GITHUB_WORKSPACE -G "MSYS Makefiles" -D BUILD_TESTS=OFF -D BUILD_STATIC=ON
       
       - name: Make Build
         working-directory: ${{runner.workspace}}/build
