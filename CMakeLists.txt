@@ -4,6 +4,10 @@ project(NESZ VERSION 0.0.1)
 option(BUILD_APP "Build app" ON)
 option(BUILD_TESTS "Build tests" ON)
 
+if(WIN32)
+    option(BUILD_STATIC "Link Static libraries" OFF)
+endif()
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 add_subdirectory(src/core)

@@ -16,4 +16,9 @@ include_directories(${CMAKE_SOURCE_DIR}/include/app)
 include_directories(${PROJECT_BINARY_DIR})
 
 add_executable(NESZ ${SOURCES})
-target_link_libraries(NESZ Qt5::Widgets)
+
+if(WIN32 AND BUILD_STATIC)
+    target_link_libraries(NESZ Qt5::Widgets -static)
+else()
+    target_link_libraries(NESZ Qt5::Widgets)
+endif()
