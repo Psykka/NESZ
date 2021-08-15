@@ -18,7 +18,7 @@ include_directories(${PROJECT_BINARY_DIR})
 add_executable(NESZ ${SOURCES})
 
 if(WIN32 AND BUILD_STATIC)
-    target_link_libraries(NESZ Qt5::Widgets -static)
+    target_link_libraries(NESZ -static Qt5::Widgets)
 else()
     target_link_libraries(NESZ Qt5::Widgets)
 endif()
