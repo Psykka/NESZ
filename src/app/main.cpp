@@ -1,11 +1,11 @@
-#include <iostream>
 #include <QApplication>
+#include <QDebug>
 #include "Meta.hpp"
 #include "MainWindow.hpp"
 
 int main(int argc, char *argv[])
 {
-    std::cout << "NESZ version: " << NESZ_VERSION << std::endl;
+    qInfo() << "NESZ version: " << NESZ_VERSION;
 
     QApplication a(argc, argv);
 
