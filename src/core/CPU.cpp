@@ -7,12 +7,12 @@ CPU::CPU()
     pc, sp, a, x, y, p = 0;
 }
 
-bool CPU::get_flag(Flag flag)
+bool CPU::getFlag(Flag flag)
 {
     return p & flag != 0;
 }
 
-void CPU::set_flag(Flag flag, bool value)
+void CPU::setFlag(Flag flag, bool value)
 {
     if(value) {
         p |= flag;
@@ -21,16 +21,16 @@ void CPU::set_flag(Flag flag, bool value)
     }
 }
 
-void CPU::set_flags_zero_negative(Byte value)
+void CPU::setFlagsZeroNegative(Byte value)
 {
-    set_flag(Z, value == 0);
-    set_flag(N, (value & 1 << 7) != 0);
+    setFlag(Z, value == 0);
+    setFlag(N, (value & 1 << 7) != 0);
 }
 
-void CPU::set_flags_carry_overflow(Byte m, Byte n, Word value)
+void CPU::setFlagsCarryOverflow(Byte m, Byte n, Word value)
 {
-    set_flag(C, value > 0xFF);
-    set_flag(V, (m ^ value) & (n ^ value) & 0x80 != 0);
+    setFlag(C, value > 0xFF);
+    setFlag(V, (m ^ value) & (n ^ value) & 0x80 != 0);
 }
 
 Byte CPU::carry()
@@ -38,63 +38,63 @@ Byte CPU::carry()
     return p & C;
 }
 
-Byte CPU::next_byte()
+Byte CPU::nextByte()
 {
     Byte x = pc;
     pc++;
-    return bus.read_byte(x);
+    return bus.readByte(x);
 }
 
-Word CPU::next_word()
+Word CPU::nextWord()
 {
     Byte x = pc;
     pc += 2;
-    return bus.read_byte(x);
+    return bus.readByte(x);
 }
 
-Word CPU::get_addr(Mode mode)
+Word CPU::getAddr(Mode mode)
 {
     switch (mode)
     {
         case ZP0:
-            return next_byte();
+            return nextByte();
         case ZPX:
             bus.tick();
-            return Utils::low_byte(Utils::offset(next_byte(), x));
+            return Utils::lowByte(Utils::offset(nextByte(), x));
         case ZPY:
             bus.tick();
-            return Utils::low_byte(Utils::offset(next_byte(), y));
+            return Utils::lowByte(Utils::offset(nextByte(), y));
         case ABS:
-            return next_word();
+            return nextWord();
         case ABX:
         {
-            Word data = next_word();
+            Word data = nextWord();
             if (Utils::cross(data, x)) bus.tick();
             
             return Utils::offset(data, x);
         }
         case ABY:
         {
-            Word data = next_word();
+            Word data = nextWord();
             if (Utils::cross(data, y)) bus.tick();
 
             return Utils::offset(data, y);
         }
         case IND:
         {
-            Word i = next_word();
-            return bus.read_noncontinuous_word(i, Utils::high_byte(i) | Utils::low_byte(i++));
+            Word i = nextWord();
+            return bus.readNoncontinuousWord(i, Utils::highByte(i) | Utils::lowByte(i++));
         }
         case IZX:
         {
             bus.tick();
-            Word i = Utils::offset(next_byte(), x);
-            return bus.read_noncontinuous_word(i, Utils::low_byte(i) | Utils::low_byte(i++));;
+            Word i = Utils::offset(nextByte(), x);
+            return bus.readNoncontinuousWord(i, Utils::lowByte(i) | Utils::lowByte(i++));;
         }
         case IZY:
         {
-            Word i = next_word();
-            Word data = bus.read_noncontinuous_word(i, Utils::low_byte(i++));
+            Word i = nextWord();
+            Word data = bus.readNoncontinuousWord(i, Utils::lowByte(i++));
 
             if (Utils::cross(data, y)) bus.tick();
 
@@ -111,12 +111,12 @@ Word CPU::get_addr(Mode mode)
     }
 }
 
-void CPU::run_next_instruction()
+void CPU::runNextInstruction()
 {
-    run_instruction(next_byte());
+    runInstruction(nextByte());
 }
 
-void CPU::run_instruction(Byte opcode)
+void CPU::runInstruction(Byte opcode)
 {
     switch (opcode)
     {
@@ -143,39 +143,39 @@ void CPU::run_instruction(Byte opcode)
 
 void CPU::LDA(Mode mode)
 {
-    Byte data = get_addr(mode);
-    set_flags_zero_negative(data);
+    Byte data = getAddr(mode);
+    setFlagsZeroNegative(data);
     a = data;
 }
 
 void CPU::LDX(Mode mode)
 {
-    Byte data = get_addr(mode);
-    set_flags_zero_negative(data);
+    Byte data = getAddr(mode);
+    setFlagsZeroNegative(data);
     x = data;
 }
 
 void CPU::LDY(Mode mode)
 {
-    Byte data = get_addr(mode);
-    set_flags_zero_negative(data);
+    Byte data = getAddr(mode);
+    setFlagsZeroNegative(data);
     y = data;
 }
 
 void CPU::STA(Mode mode)
 {
-    Byte data = get_addr(mode);
-    bus.write_byte(data, a);
+    Byte data = getAddr(mode);
+    bus.writeByte(data, a);
 }
 
 void CPU::STX(Mode mode)
 {
-    Byte data = get_addr(mode);
-    bus.write_byte(data, x);
+    Byte data = getAddr(mode);
+    bus.writeByte(data, x);
 }
 
 void CPU::STY(Mode mode)
 {
-    Byte data = get_addr(mode);
-    bus.write_byte(data, y);
+    Byte data = getAddr(mode);
+    bus.writeByte(data, y);
 }

@@ -34,23 +34,23 @@ class CPU {
         Word pc;
         Byte sp, a, x, y, p;
 
-        void run_next_instruction();
+        void runNextInstruction();
         
     private:
-        bool get_flag(Flag flag);
-        void set_flag(Flag flag, bool value);
+        bool getFlag(Flag flag);
+        void setFlag(Flag flag, bool value);
 
-        void set_flags_zero_negative(Byte value);
-        void set_flags_carry_overflow(Byte m, Byte n, Word value);
+        void setFlagsZeroNegative(Byte value);
+        void setFlagsCarryOverflow(Byte m, Byte n, Word value);
         Byte carry();
 
-        Byte next_byte();
-        Word next_word();
+        Byte nextByte();
+        Word nextWord();
         
-        Word get_addr(Mode mode);
-        void run_instruction(Byte opcode);
+        Word getAddr(Mode mode);
+        void runInstruction(Byte opcode);
 
-        // load Store
+        // load & Store
         void LDA(Mode mode); void STA(Mode mode);
         void LDX(Mode mode); void STX(Mode mode);
         void LDY(Mode mode); void STY(Mode mode);

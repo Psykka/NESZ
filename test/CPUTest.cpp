@@ -29,7 +29,7 @@ TEST_F(CPUTest, TestAllLDAModes)
     cpu.bus.ram[cpu.pc] = 0xa9;
     cpu.bus.ram[cpu.pc + 1] = 0x01;
 
-    cpu.run_next_instruction();
+    cpu.runNextInstruction();
     EXPECT_EQ(0x01, cpu.a);
 
 
@@ -38,7 +38,7 @@ TEST_F(CPUTest, TestAllLDAModes)
     cpu.bus.ram[cpu.pc] = 0xa5;
     cpu.bus.ram[cpu.pc + 1] = 0x02;
 
-    cpu.run_next_instruction();
+    cpu.runNextInstruction();
     EXPECT_EQ(0x02, cpu.a);
 
 
@@ -47,7 +47,7 @@ TEST_F(CPUTest, TestAllLDAModes)
     cpu.bus.ram[cpu.pc] = 0xb5;
     cpu.bus.ram[cpu.pc + 1] = 0x03;
 
-    cpu.run_next_instruction();
+    cpu.runNextInstruction();
     EXPECT_EQ(0x03, cpu.a);
 
 
@@ -56,7 +56,7 @@ TEST_F(CPUTest, TestAllLDAModes)
     cpu.bus.ram[cpu.pc] = 0xad;
     cpu.bus.ram[cpu.pc + 1] = 0x04;
 
-    cpu.run_next_instruction();
+    cpu.runNextInstruction();
     EXPECT_EQ(0x04, cpu.a);
 
 
@@ -65,7 +65,7 @@ TEST_F(CPUTest, TestAllLDAModes)
     cpu.bus.ram[cpu.pc] = 0xbd;
     cpu.bus.ram[cpu.pc + 1] = 0x05;
 
-    cpu.run_next_instruction();
+    cpu.runNextInstruction();
     EXPECT_EQ(0x05, cpu.a);
 
 
@@ -74,7 +74,7 @@ TEST_F(CPUTest, TestAllLDAModes)
     cpu.bus.ram[cpu.pc] = 0xbd;
     cpu.bus.ram[cpu.pc + 1] = 0x06;
 
-    cpu.run_next_instruction();
+    cpu.runNextInstruction();
     EXPECT_EQ(0x06, cpu.a);
 
 
@@ -83,7 +83,7 @@ TEST_F(CPUTest, TestAllLDAModes)
     cpu.bus.ram[cpu.pc] = 0xbd;
     cpu.bus.ram[cpu.pc + 1] = 0x07;
 
-    cpu.run_next_instruction();
+    cpu.runNextInstruction();
     EXPECT_EQ(0x07, cpu.a);
 
 
@@ -92,6 +92,6 @@ TEST_F(CPUTest, TestAllLDAModes)
     cpu.bus.ram[cpu.pc] = 0xbd;
     cpu.bus.ram[cpu.pc + 1] = 0x08;
 
-    cpu.run_next_instruction();
+    cpu.runNextInstruction();
     EXPECT_EQ(0x08, cpu.a);
 }

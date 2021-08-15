@@ -11,11 +11,11 @@ class Bus
 
         void tick();
 
-        Byte read_byte(Word addr);
-        Word read_word();
+        Byte readByte(Word addr);
+        Word readWord();
 
-        Word read_noncontinuous_word(Byte x, Byte y);
-        Word read_word(Word addr);
+        Word readNoncontinuousWord(Byte x, Byte y);
+        Word readWord(Word addr);
 
-        void write_byte(Word addr, Byte data);
+        void writeByte(Word addr, Byte data);
 };
