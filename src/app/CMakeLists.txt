@@ -19,6 +19,7 @@ add_executable(NESZ ${SOURCES})
 
 if(WIN32 AND BUILD_STATIC)
     target_link_libraries(NESZ -static gcc stdc++ winpthread Qt5::Widgets)
+    set_property(TARGET NESZ PROPERTY WIN32_EXECUTABLE true)
 else()
     target_link_libraries(NESZ Qt5::Widgets)
 endif()
