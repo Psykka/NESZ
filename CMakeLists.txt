@@ -11,6 +11,7 @@ endif()
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 if(BUILD_STATIC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static")
     set(CMAKE_FIND_LIBRARY_SUFFIXES .a)
 endif()
 
