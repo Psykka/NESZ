@@ -136,6 +136,17 @@ void CPU::runInstruction(Byte opcode)
         return LDA(IZX);
     case 0xb1:
         return LDA(IZY);
+
+    case 0xa2:
+        return LDX(IMM);
+    case 0xa6:
+        return LDX(ZP0);
+    case 0xb6:
+        return LDX(ZPY);
+    case 0xae:
+        return LDX(ABS);
+    case 0xbe:
+        return LDX(ABY);
     default:
         pc++;
     }

@@ -95,3 +95,47 @@ TEST_F(CPUTest, TestAllLDAModes)
     cpu.runNextInstruction();
     EXPECT_EQ(0x08, cpu.a);
 }
+
+
+TEST_F(CPUTest, TestAllLDXModes)
+{
+    GTEST_COUT << "IMM\n";
+
+    cpu.bus.ram[cpu.pc] = 0xa2;
+    cpu.bus.ram[cpu.pc + 1] = 0x01;
+
+    cpu.runNextInstruction();
+    EXPECT_EQ(0x01, cpu.x);
+
+    GTEST_COUT << "ZP0\n";
+
+    cpu.bus.ram[cpu.pc] = 0xa6;
+    cpu.bus.ram[cpu.pc + 1] = 0x02;
+
+    cpu.runNextInstruction();
+    EXPECT_EQ(0x02, cpu.x);
+
+    GTEST_COUT << "ZPY\n";
+
+    cpu.bus.ram[cpu.pc] = 0xb6;
+    cpu.bus.ram[cpu.pc + 1] = 0x03;
+
+    cpu.runNextInstruction();
+    EXPECT_EQ(0x03, cpu.x);
+
+    GTEST_COUT << "ABS\n";
+
+    cpu.bus.ram[cpu.pc] = 0xae;
+    cpu.bus.ram[cpu.pc + 1] = 0x04;
+
+    cpu.runNextInstruction();
+    EXPECT_EQ(0x04, cpu.x);
+
+    GTEST_COUT << "ABY\n";
+
+    cpu.bus.ram[cpu.pc] = 0xbe;
+    cpu.bus.ram[cpu.pc + 1] = 0x05;
+
+    cpu.runNextInstruction();
+    EXPECT_EQ(0x05, cpu.x);
+}
