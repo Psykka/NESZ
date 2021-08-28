@@ -40,16 +40,16 @@ Byte CPU::carry()
 
 Byte CPU::nextByte()
 {
-    Byte x = pc;
+    Byte data = pc;
     pc++;
-    return bus.readByte(x);
+    return bus.readByte(data);
 }
 
 Word CPU::nextWord()
 {
-    Byte x = pc;
+    Byte data = pc;
     pc += 2;
-    return bus.readByte(x);
+    return bus.readByte(data);
 }
 
 Word CPU::getAddr(Mode mode)
@@ -120,6 +120,8 @@ void CPU::runInstruction(Byte opcode)
 {
     switch (opcode)
     {
+
+    // Load Accumulator
     case 0xa9:
         return LDA(IMM);
     case 0xa5:
@@ -137,6 +139,7 @@ void CPU::runInstruction(Byte opcode)
     case 0xb1:
         return LDA(IZY);
 
+    // Load X Register
     case 0xa2:
         return LDX(IMM);
     case 0xa6:
@@ -147,6 +150,19 @@ void CPU::runInstruction(Byte opcode)
         return LDX(ABS);
     case 0xbe:
         return LDX(ABY);
+
+    // Load Y Register
+    case 0xa0:
+        return LDY(IMM);
+    case 0xa4:
+        return LDY(ZP0);
+    case 0xb4:
+        return LDY(ZPX);
+    case 0xac:
+        return LDY(ABS);
+    case 0xbc:
+        return LDY(ABX);
+        
     default:
         pc++;
     }
