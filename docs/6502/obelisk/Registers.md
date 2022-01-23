@@ -63,4 +63,4 @@ The overflow flag is set during arithmetic operations if the result has yielded 
 The negative flag is set if the result of the last operation had bit 7 set to a one.
 
 --------------------------------------------------
-[&larr; Back](Architecture.md) | [Contents](Introduction.md) | [Next &rarr;](Instructions.md)
+[&larr; Back](Architecture.md) | [Contents](README.md) | [Next &rarr;](Instructions.md)

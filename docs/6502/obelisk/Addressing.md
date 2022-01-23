@@ -111,4 +111,4 @@ STA (DST),Y     ;Store accumulator indirectly into memory
 ```
 
 --------------------------------------------------
-[&larr; Back](Architecture.md) | [Contents](Introduction.md) | [Next &rarr;](Algorithms.md)
+[&larr; Back](Architecture.md) | [Contents](README.md) | [Next &rarr;](Algorithms.md)

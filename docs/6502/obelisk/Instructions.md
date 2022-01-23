@@ -129,4 +129,4 @@ The remaining instructions perform useful but rarely used functions.
 | [RTI](Reference.md#RTI) | Return from Interrupt | All |
 
 --------------------------------------------------
-[&larr; Back](Registers.md) | [Contents](Introduction.md) | [Next &rarr;](Addressing.md)
+[&larr; Back](Registers.md) | [Contents](README.md) | [Next &rarr;](Addressing.md)

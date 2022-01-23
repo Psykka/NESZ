@@ -7,4 +7,4 @@ If you want to find out more about 6502 based systems and programming then try f
 A site dedicated to the 6502 with lots of additional information and software to browse. 
 
 --------------------------------------------------
-[&larr; Back](Downloads.md) | [Contents](Introduction.md)
+[&larr; Back](Downloads.md) | [Contents](README.md)
