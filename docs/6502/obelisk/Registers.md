@@ -44,7 +44,7 @@ The zero flag is set if the result of the last operation as was zero.
 
 - Interrupt Disable
 
-The interrupt disable flag is set if the program has executed a 'Set Interrupt Disable' ([SEI](Reference.md#SEI)) instruction. While this flag is set the processor will not respond to interrupts from devices until it is cleared by a 'Clear Interrupt Disable' ([CLI](CLI)) instruction.
+The interrupt disable flag is set if the program has executed a 'Set Interrupt Disable' ([SEI](Reference.md#SEI)) instruction. While this flag is set the processor will not respond to interrupts from devices until it is cleared by a 'Clear Interrupt Disable' ([CLI](Reference.md#CLI)) instruction.
 
 - Decimal Mode
 
