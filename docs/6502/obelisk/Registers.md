@@ -52,7 +52,7 @@ While the decimal mode flag is set the processor will obey the rules of Binary C
 
 - Break Command
 
-The break command bit is set when a [BRK](Reference.md#) instruction has been executed and an interrupt has been generated to process it.
+The break command bit is set when a [BRK](Reference.md#BRK) instruction has been executed and an interrupt has been generated to process it.
 
 - Overflow Flag
 
