@@ -13,16 +13,14 @@ jobs:
         with:
           submodules: true
       - name: Install dependencies
-        working-directory: ${{runner.workspace}}
         run: |
-          sudo apt update
-          sudo apt install meson ninja-build libsdl2-dev
+          sudo apt-get update
+          sudo apt-get install meson ninja-build libsdl2-dev -y
         
       - name: Create build dir
-        working-directory: ${{runner.workspace}}
         run: meson build -D build_tests=true
       
-      - name: Build Test
-        working-directory: ${{runner.workspace}}/build
+      - name: Build and Test
         run: |
-          GTEST_COLOR=1 meson test -v
+          cd build
+          GTEST_COLOR=1 ninja test -v

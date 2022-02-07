@@ -17,21 +17,21 @@ jobs:
           submodules: true
       - name: Install dependencies
         run: |
-          sudo apt update
-          sudo apt install meson ninja-build libsdl2-dev
+          sudo apt-get update
+          sudo apt-get install meson ninja-build libsdl2-dev -y
           
       - name: Create build dir
-        working-directory: ${{runner.workspace}}
-        run: meson build
+        run: meson setup build
 
       - name: Ninja Build
-        working-directory: ${{runner.workspace}}/build
-        run: ninja -j$(nproc --all)
+        run: |
+          cd build
+          ninja -j$(nproc --all)
       
       - uses: actions/upload-artifact@v1
         with:
           name: NESZ-linux-x86_64
-          path: ${{runner.workspace}}/build/NESZ
+          path: NESZ
 
   windows:
     runs-on: windows-latest
@@ -48,17 +48,17 @@ jobs:
             msystem: MINGW64
             update: true
       - name: Install dependencies
-        run: pacman -S --noconfirm --needed make mingw-w64-x86_64-{meson,SDL2,toolchain}
+        run: pacman -S --noconfirm --needed ninja mingw-w64-x86_64-{meson,SDL2,toolchain}
           
       - name: Create build dir
-        working-directory: ${{runner.workspace}}
         run: meson build
       
       - name: Make Build
-        working-directory: ${{runner.workspace}}/build
-        run: make -j$(nproc --all)
+        run: |
+          cd build
+          ninja -j$(nproc --all)
 
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v2
         with:
           name: NESZ-windows-x86_64
-          path: ${{runner.workspace}}/build/NESZ.exe
+          path: NESZ.exe
