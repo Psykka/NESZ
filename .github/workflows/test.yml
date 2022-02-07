@@ -16,22 +16,13 @@ jobs:
         working-directory: ${{runner.workspace}}
         run: |
           sudo apt update
-          sudo apt install cmake ninja-build qt5-default libsdl2-dev
+          sudo apt install meson ninja-build libsdl2-dev
         
       - name: Create build dir
         working-directory: ${{runner.workspace}}
-        run: mkdir ${{runner.workspace}}/build
-
-      - name: Configure cmake
-        working-directory: ${{runner.workspace}}/build
-        run: cmake $GITHUB_WORKSPACE -G Ninja
+        run: meson build -D build_tests=true
       
-      - name: Ninja Build
+      - name: Build Test
         working-directory: ${{runner.workspace}}/build
         run: |
-          ninja
-      
-      - name: Test
-        working-directory: ${{runner.workspace}}/build
-        run: |
-          GTEST_COLOR=1 ctest -V
+          GTEST_COLOR=1 meson test -v

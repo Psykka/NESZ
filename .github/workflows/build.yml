@@ -1,0 +1,64 @@
+name: Linux Build
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install meson ninja-build libsdl2-dev
+          
+      - name: Create build dir
+        working-directory: ${{runner.workspace}}
+        run: meson build
+
+      - name: Ninja Build
+        working-directory: ${{runner.workspace}}/build
+        run: ninja -j$(nproc --all)
+      
+      - uses: actions/upload-artifact@v1
+        with:
+          name: NESZ-linux-x86_64
+          path: ${{runner.workspace}}/build/NESZ
+
+  windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+      - uses: msys2/setup-msys2@v2
+        with:
+            msystem: MINGW64
+            update: true
+      - name: Install dependencies
+        run: pacman -S --noconfirm --needed make mingw-w64-x86_64-{meson,SDL2,toolchain}
+          
+      - name: Create build dir
+        working-directory: ${{runner.workspace}}
+        run: meson build
+      
+      - name: Make Build
+        working-directory: ${{runner.workspace}}/build
+        run: make -j$(nproc --all)
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: NESZ-windows-x86_64
+          path: ${{runner.workspace}}/build/NESZ.exe

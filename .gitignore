@@ -1,2 +1,4 @@
-/.vscode
-/build
+.vscode
+builddir
+subprojects/*
+!/subprojects/*.wrap
