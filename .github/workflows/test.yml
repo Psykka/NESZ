@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install meson ninja-build libsdl2-dev -y
+          sudo apt-get install meson ninja-build libsdl2-dev libgtest-dev -y
         
       - name: Create build dir
         run: meson build -D build_tests=true
