@@ -9,13 +9,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
         with:
           submodules: true
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install meson ninja-build libsdl2-dev libgtest-dev -y
+          sudo apt-get install ninja-build python3-pip libxi-dev -y
+          pip3 install meson
         
       - name: Create build dir
         run: meson build -D build_tests=true

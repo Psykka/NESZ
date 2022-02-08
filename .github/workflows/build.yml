@@ -12,13 +12,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
         with:
           submodules: true
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install meson ninja-build libsdl2-dev -y
+          sudo apt-get install ninja-build python3-pip libxi-dev -y
+          pip3 install meson
           
       - name: Create build dir
         run: meson build
@@ -40,7 +41,7 @@ jobs:
         shell: msys2 {0}
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
         with:
           submodules: true
       - uses: msys2/setup-msys2@v2
@@ -48,7 +49,7 @@ jobs:
             msystem: MINGW64
             update: true
       - name: Install dependencies
-        run: pacman -S --noconfirm --needed ninja mingw-w64-x86_64-{meson,SDL2,toolchain}
+        run: pacman -S --noconfirm --needed ninja mingw-w64-x86_64-meson
           
       - name: Create build dir
         run: meson build
