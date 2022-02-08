@@ -18,7 +18,8 @@ subdir('src')
 executable('NESZ', project_sources,
     main_source,
     dependencies: sdl2_dep,
-    include_directories : core_incdir)
+    win_subsystem: 'windows',
+    include_directories: core_incdir)
 
 if get_option('build_tests')
   subdir('test')
