@@ -1,6 +1,6 @@
 project('NESZ', 'cpp',
-    version : '1.0',
-    license : [ ' BSD-3-Clause License'],
+    version: '0.0.1',
+    license: [ ' BSD-3-Clause License'],
     default_options: [
       'default_library=static',
       'warning_level=3',
@@ -18,7 +18,8 @@ subdir('src')
 executable('NESZ', project_sources,
     main_source,
     dependencies: sdl2_dep,
-    include_directories: core_incdir)
+    include_directories: core_incdir,
+    cpp_args: '-static')
 
 if get_option('build_tests')
   subdir('test')
