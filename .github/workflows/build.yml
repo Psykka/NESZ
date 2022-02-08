@@ -21,17 +21,17 @@ jobs:
           sudo apt-get install meson ninja-build libsdl2-dev -y
           
       - name: Create build dir
-        run: meson setup build
+        run: meson build
 
       - name: Ninja Build
         run: |
           cd build
           ninja -j$(nproc --all)
       
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v2
         with:
           name: NESZ-linux-x86_64
-          path: NESZ
+          path: build/NESZ
 
   windows:
     runs-on: windows-latest
@@ -53,7 +53,7 @@ jobs:
       - name: Create build dir
         run: meson build
       
-      - name: Make Build
+      - name: Ninja Build
         run: |
           cd build
           ninja -j$(nproc --all)
@@ -61,4 +61,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: NESZ-windows-x86_64
-          path: NESZ.exe
+          path: build/NESZ.exe
