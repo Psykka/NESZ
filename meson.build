@@ -10,6 +10,10 @@ project('NESZ', 'cpp',
 
 cc = meson.get_compiler('cpp')
 
+if cc.get_id() == 'msvc'
+  add_project_arguments(['/MP', '/MT'], language: 'cpp')
+endif
+
 project_sources = []
 core_incdir = include_directories('include/core')
 
@@ -21,10 +25,6 @@ executable('NESZ', project_sources,
     main_source,
     dependencies: sdl2_dep,
     include_directories: core_incdir)
-
-if cc.get_id() == 'msvc'
-  add_project_arguments(['/MP', '/MT'], language: 'cpp')
-endif
 
 if get_option('build_tests')
   subdir('test')
