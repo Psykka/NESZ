@@ -23,5 +23,4 @@ jobs:
       
       - name: Build and Test
         run: |
-          cd build
-          GTEST_COLOR=1 ninja test -v
+          GTEST_COLOR=1 ninja test -v -C build/
