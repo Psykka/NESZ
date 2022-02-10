@@ -10,7 +10,6 @@ on:
 jobs:
   linux:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
         with:
@@ -26,8 +25,7 @@ jobs:
 
       - name: Ninja Build
         run: |
-          cd build
-          ninja -j$(nproc --all)
+          ninja -j$(nproc --all) -C build/
       
       - uses: actions/upload-artifact@v2
         with:
@@ -36,28 +34,25 @@ jobs:
 
   windows:
     runs-on: windows-latest
-    defaults:
-      run:
-        shell: msys2 {0}
 
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - uses: msys2/setup-msys2@v2
+      - uses: ilammy/msvc-dev-cmd@v1.10.0
+      - uses: actions/setup-python@v2
         with:
-            msystem: MINGW64
-            update: true
+          python-version: '3.x'
+        
       - name: Install dependencies
-        run: pacman -S --noconfirm --needed ninja mingw-w64-x86_64-{meson,SDL2,toolchain}
+        run: pip install meson ninja
           
       - name: Create build dir
         run: meson build
       
       - name: Ninja Build
         run: |
-          cd build
-          ninja -j$(nproc --all)
+          ninja -j$(nproc --all) -C build/
 
       - uses: actions/upload-artifact@v2
         with:
