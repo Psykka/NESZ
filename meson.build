@@ -8,6 +8,8 @@ project('NESZ', 'cpp',
       'bindir=bin' ]
 )
 
+cc = meson.get_compiler('cpp')
+
 project_sources = []
 core_incdir = include_directories('include/core')
 
