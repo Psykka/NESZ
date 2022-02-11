@@ -10,9 +10,9 @@ project('NESZ', 'cpp',
 
 cc = meson.get_compiler('cpp')
 
-if cc.get_id() == 'msvc'
-  add_project_arguments(['/MP', '/MT'], language: 'cpp')
-endif
+# if cc.get_id() == 'msvc'
+#   add_project_arguments(['/MP', '/MT'], language: 'cpp')
+# endif
 
 project_sources = []
 core_incdir = include_directories('include/core')
