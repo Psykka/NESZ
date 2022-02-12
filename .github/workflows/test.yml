@@ -20,7 +20,10 @@ jobs:
         
       - name: Create build dir
         run: meson build -D build_tests=true
-      
-      - name: Build and Test
+
+      - name: Build
+        run: ninja -C build/
+
+      - name: Test
         run: |
           GTEST_COLOR=1 ninja test -v -C build/
