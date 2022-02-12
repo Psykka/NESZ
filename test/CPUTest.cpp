@@ -1,7 +1,9 @@
 #include <gtest/gtest.h>
-#include "CPU.hpp"
+#include "core/CPU.hpp"
 
 #define GTEST_COUT std::cout << "\033[0;32m[  MODE    ] \033[0m"
+
+using namespace core;
 
 class CPUTest : public ::testing::Test
 {

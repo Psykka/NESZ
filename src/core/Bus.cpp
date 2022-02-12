@@ -1,4 +1,6 @@
-#include "Bus.hpp"
+#include "core/Bus.hpp"
+
+using namespace core;
 
 Bus::Bus()
 {

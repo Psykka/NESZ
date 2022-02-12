@@ -1,4 +1,6 @@
-#include "Utils.hpp"
+#include "core/Utils.hpp"
+
+using namespace core;
 
 bool Utils::cross(Word base, Byte offset)
 {

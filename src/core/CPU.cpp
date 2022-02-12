@@ -1,6 +1,8 @@
 #include <stdexcept>
-#include "CPU.hpp"
-#include "Utils.hpp"
+#include "core/CPU.hpp"
+#include "core/Utils.hpp"
+
+using namespace core;
 
 CPU::CPU()
 {

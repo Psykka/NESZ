@@ -1,8 +1,10 @@
 #pragma once
 #include "Types.hpp"
 
-class Bus
+namespace core
 {
+    class Bus
+    {
     public:
         Bus();
 
@@ -18,4 +20,5 @@ class Bus
         Word readWord(Word addr);
 
         void writeByte(Word addr, Byte data);
-};
+    };
+}
