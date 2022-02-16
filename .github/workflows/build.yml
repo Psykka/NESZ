@@ -14,6 +14,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
+
       - name: Install dependencies
         run: |
           sudo apt-get update
@@ -39,6 +40,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
+
       - uses: ilammy/msvc-dev-cmd@v1.10.0
       - uses: actions/setup-python@v2
         with:
@@ -58,3 +60,26 @@ jobs:
         with:
           name: NESZ-windows-x86_64
           path: build/NESZ.exe
+
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Install dependencies
+        run: brew install meson ninja
+
+      - name: Create build dir
+        run: meson build
+      
+      - name: Ninja Build
+        run: |
+          ninja -C build/
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: NESZ-windows-x86_64
+          path: build/NESZ
+          
