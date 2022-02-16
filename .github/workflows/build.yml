@@ -80,6 +80,6 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: NESZ-windows-x86_64
+          name: NESZ-macos-x86_64
           path: build/NESZ
           
