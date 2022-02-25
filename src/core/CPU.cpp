@@ -6,7 +6,7 @@ using namespace core;
 
 CPU::CPU()
 {
-    pc, sp, a, x, y, p = 0;
+    pc = sp = a = x = y = p = 0;
 }
 
 bool CPU::getFlag(Flag flag)
